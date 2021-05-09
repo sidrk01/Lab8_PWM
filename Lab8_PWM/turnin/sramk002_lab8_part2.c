@@ -181,7 +181,7 @@ int main(void) {
 	notes = SMStart2;
     while (1) {
 	Tick_Fct1();	
-	Tick_Fct2();
+	Tick_Fct2(freq);
     }
     return 1;
 }
