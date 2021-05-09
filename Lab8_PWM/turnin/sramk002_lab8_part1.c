@@ -136,8 +136,8 @@ int main(void) {
 	DDRB = 0xFF; PORTB = 0x00;
     /* Insert your solution below */
 	notes = SMStart;
-    while (1) {
 	PWM_on();
+    while (1) {
 	Tick_Fct();	
     }
     return 1;
