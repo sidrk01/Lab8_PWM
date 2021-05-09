@@ -23,7 +23,7 @@ enum Note_States { SMStart, Wait, C_4, D_4, E_4 } notes;
 //based on settings in PWM_on()
 //Passing in 0 as teh frequency will stop the speaker from generating sound 
 void set_PWM(double frequency){
-	static double current frequency; //Keeps track of the currently set frequency 
+	static double current_frequency; //Keeps track of the currently set frequency 
 	//Will only update the registers when the frequency changes, otherwise allows music to play uninterrupted.
 	if (frequency != current_frequency){
 		if (!frequency) { TCCR3B &= 0x08; } //stops timer/counter 
@@ -108,7 +108,7 @@ void Tick_Fct(){
 
 	switch(notes){
 	case Wait:
-	   set_PWM(0.954);
+	   set_PWM(0.0);
 	break;
 
 	case C_4:
@@ -124,7 +124,7 @@ void Tick_Fct(){
 	break;
 	
 	default:
-	   set_PWM(0.954);
+	   set_PWM(0.0);
 	break;		
 	}
 
