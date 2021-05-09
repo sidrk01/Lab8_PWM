@@ -26,7 +26,7 @@ int speaky_note;
 //based on settings in PWM_on()
 //Passing in 0 as teh frequency will stop the speaker from generating sound 
 void set_PWM(double frequency){
-	static double current frequency; //Keeps track of the currently set frequency 
+	static double current_frequency; //Keeps track of the currently set frequency 
 	//Will only update the registers when the frequency changes, otherwise allows music to play uninterrupted.
 	if (frequency != current_frequency){
 		if (!frequency) { TCCR3B &= 0x08; } //stops timer/counter 
