@@ -122,6 +122,10 @@ void Tick_Fct(){
 	case E_4:
 	   set_PWM(329.63);
 	break;
+	
+	default:
+	   set_PWM(0.954);
+	break;		
 	}
 
 }
@@ -131,7 +135,7 @@ int main(void) {
 	DDRA = 0x00; PORTA = 0xFF;
 	DDRB = 0xFF; PORTB = 0x00;
     /* Insert your solution below */
-	notes = SM_Start;
+	notes = SMStart;
     while (1) {
 	PWM_on();
 	Tick_Fct();	
