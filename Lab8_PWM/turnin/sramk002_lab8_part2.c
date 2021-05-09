@@ -111,7 +111,7 @@ void Tick_Fct2(double freqs[]){
 	switch(notes){
    	case SMStart2:
 	notes = Wait;
-	break 
+	break;
 
 	case Wait:
 	if (b2){
@@ -159,7 +159,7 @@ void Tick_Fct2(double freqs[]){
 	case Dec:
 		if (speaky_note > 0){
 		speaky_note -= 1;
-		setPWM(freqs[speaky_note]);
+		set_PWM(freqs[speaky_note]);
 		}
 	break;
 
@@ -175,7 +175,7 @@ int main(void) {
 	DDRA = 0x00; PORTA = 0xFF;
 	DDRB = 0xFF; PORTB = 0x00;
     /* Insert your solution below */
-	double freq[8] = {261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25}
+	double freq[8] = {261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25};
 	speaky_note = 0;
 	speaky = SMStart1;
 	notes = SMStart2;
