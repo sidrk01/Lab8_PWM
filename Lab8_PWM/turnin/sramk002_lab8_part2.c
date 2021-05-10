@@ -17,7 +17,7 @@
 #define b2 (~PINA & 0x02)
 #define b3 (~PINA & 0x04)
 
-enum Speaky_On { SMStart1, Off, On, Wait_On } speaky;
+enum Speaky_On { SMStart1, Off, On, Wait_On, Wait_Off} speaky;
 enum Note_States { SMStart2, Wait, Inc, Dec, Inc_Wait, Dec_Wait } notes;
  
 int speaky_note;
@@ -65,9 +65,17 @@ void PWM_off() {
 void Tick_Fct1(){
 	switch(speaky){
 	case SMStart1:
-	speaky = Off;
+	speaky = Wait_Off;
 	break;
 
+	case Wait_Off:
+	if (b1){
+	speaky = Wait_Off;
+	} else if (!b1){
+	speaky = Off;
+	}
+	break;
+		
 	case Off:
 	if (!b1){
 	speaky = Off;
@@ -77,10 +85,10 @@ void Tick_Fct1(){
 	break;
 
 	case On:
-	if (!b1){
-	speaky = Wait_On;
-	} else {
+	if (b1){
 	speaky = On;
+	} else if (!b1) {
+	speaky = Wait_On;
 	}
 	break;
 
@@ -94,7 +102,7 @@ void Tick_Fct1(){
 	}
 
 	switch(speaky){
-	case Off:
+	case Wait_Off:
 	PWM_off();
 	break;
 	
